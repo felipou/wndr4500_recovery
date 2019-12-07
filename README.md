@@ -42,19 +42,23 @@ So this is what I tried and what worked:
 - The ping command (also default) can be used to indicate what state the route
 is in. The CFE bootloader has TTL=100, and the loaded application firmware
 has TTL=64. In my case, the following response was printed:
-```64 bytes from 192.168.1.1: icmp_seq=502 ttl=100 time=0.243 ms```
+```
+64 bytes from 192.168.1.1: icmp_seq=502 ttl=100 time=0.243 ms
+```
 - The full collection of TFTP command options that I've recommended were:
 ```$ tftp
 connect 192.168.1.1
 binary
 rexmt 1
 timeout 60
-put dd-wrt.XXXXXXXX.chk```
+put dd-wrt.XXXXXXXX.chk
+```
 - I managed to make it worked after all (with the stock firmware) using the
 following commands:
 ```$ tftp -e 192.168.1.1
 timeout 60
-put dd-wrt.XXXXXXXX.chk```
+put dd-wrt.XXXXXXXX.chk
+```
 - I did a hard-reset just before trying to flash just to be sure, but it
 doesn't seem so be always required.
 - After doing the reset, and turning off and on the router one last time,
